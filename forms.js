@@ -57,10 +57,10 @@ function select(className, opts) {// name, selectOptions, opts) {
 	var selectOptions = opts.options
 	var attrsHtml = (opts.id ? ' id="'+opts.id+'" name="'+opts.id+'"' : '')
 	var $select = $('<select class="'+tags.classNames('tags-forms-select', className)+'" '+attrsHtml+'>'+$.map(selectOptions, function(option) {
-		var selected = ((opts.value && opts.value == (option.value ? option.value : option)) ? 'selected=true' : '')
+		var selected = (opts.value && opts.value == (option.value ? option.value : option))
 		var value = option.value ? option.value : option
 		var label = option.label ? option.label : option
-		return '<option value="'+value+'" '+selected+'>'+label+'</option>'
+		return select.optionHtml(value, label, selected)
 	}).join('')+'</select>')
 	if (opts.onChange) {
 		$select.on('change', function($e) {
@@ -68,6 +68,10 @@ function select(className, opts) {// name, selectOptions, opts) {
 		})
 	}
 	return $select
+}
+
+select.optionHtml = function(value, label, selected) {
+	return '<option value="'+value+'" '+(selected ? 'selected=true' : '')+'>'+label+'</option>'
 }
 
 function submission(text, submittingText, opts, onsubmit) {
