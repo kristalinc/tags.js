@@ -78,7 +78,7 @@ function list(className, opts) {
 		$el.empty().append(opts.renderItem(item))
 	}
 	result.select = result.selectItem = function(item) {
-		var el = $('#'+getItemId(item))[0]
+		var el = result.find('#'+getItemId(item))[0]
 		selectEl(el)
 	}
 	result.selectIndex = function(index) {
@@ -97,6 +97,11 @@ function list(className, opts) {
 	result.find = function(selector) { return $tag.find(selector) }
 	result.getElement = function(item) {
 		return result.find('#'+getItemId(item))
+	}
+	result.removeItem = function(item) {
+		var itemId = getItemId(item)
+		result.find('#'+itemId).remove()
+		delete data[itemId]
 	}
 
 	function selectEl(el) {
