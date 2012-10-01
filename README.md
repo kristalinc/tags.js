@@ -153,10 +153,10 @@ Tags comes with a bunch of convenient addons
 	</script>
 	<style type="text/css">
 		/* Buttons get the "active" class applied to them during mousedown/touchdown */
-		.button {
+		.tags-button {
 			border:4px solid #def; padding:5px; border-radius:10px; display:inline-block;
 		}
-		.button.active {
+		.tags-button.active {
 			background:#567; color:#fff;
 		}
 	</style>
