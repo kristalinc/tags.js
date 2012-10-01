@@ -95,6 +95,9 @@ function list(className, opts) {
 		return this
 	}
 	result.find = function(selector) { return $tag.find(selector) }
+	result.getElement = function(item) {
+		return result.find('#'+getItemId(item))
+	}
 
 	function selectEl(el) {
 		var id = el.getAttribute('id')
