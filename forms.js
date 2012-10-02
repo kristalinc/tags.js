@@ -14,11 +14,12 @@ function field(id, labelText, opts) {
 	var fieldOpts = options(opts, { input:input })
 	if (!opts) { opts = {} }
 	if (!opts.id) { opts.id = id }
-	return div('tags-forms-field',
+	return div(field.className,
 		label({ 'for':id }, labelText),
 		fieldOpts.input(null, opts)
 	)
 }
+field.className = 'tags-forms-field'
 
 function checkbox(className, opts) {
 	if (typeof className == 'object' && !opts) {
