@@ -16,7 +16,12 @@ function field(id, labelText, opts) {
 	if (!opts.id) { opts.id = id }
 	return div(field.className,
 		label({ 'for':id }, labelText),
-		fieldOpts.input(null, opts)
+		fieldOpts.input(null, opts),
+		opts.focus && function($tag) {
+			setTimeout(function() {
+				$tag.find('input').focus()
+			})
+		}
 	)
 }
 field.className = 'tags-forms-field'
