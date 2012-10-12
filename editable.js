@@ -7,9 +7,16 @@ var div = tags('div')
 module.exports = editable
 
 function editable(opts) {
-	return button(function() {
-		editable.show($(this), opts)
-	})
+	return [
+		button(function() {
+			editable.show($(this), opts)
+		}),
+		opts.focus && function($tag) {
+			setTimeout(function() {
+				editable.show($tag, opts)
+			})
+		}
+	]
 }
 
 var keys = { ESC:27, RETURN:13, BACKSPACE:8 }
