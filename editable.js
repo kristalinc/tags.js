@@ -31,9 +31,10 @@ editable.show = function($el, opts) {
 	}
 	opts = tags.options(opts, {
 		onSave:null,
-		value:null
+		value:null,
+		maxWidth:null
 	})
-	
+
 	var value = (opts.value == null ? $el.text() : opts.value)
 	var $input = $(input('tags-editable')).val(value)
 		.css({ position:'absolute', paddingLeft:paddingLeft, fontFamily:$el.css('fontFamily'), fontSize:$el.css('fontSize') })
@@ -82,7 +83,7 @@ editable.show = function($el, opts) {
 		return {
 			top:pos.top-pad,
 			left:pos.left-pad,
-			width:$el.width()+pad*2 + pad*2,
+			width:opts.maxWidth == null ? $el.width()+pad*2 + pad*2 : opts.maxWidth,
 			height:$el.height()+pad*2
 		}
 	}
