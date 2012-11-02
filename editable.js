@@ -1,5 +1,7 @@
 /* Making an element editable means you can touch it to start editting its content */
 
+// TEST
+
 var tags = require('./tags')
 var button = require('./button')
 var div = tags('div')
