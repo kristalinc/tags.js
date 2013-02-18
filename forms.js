@@ -37,7 +37,7 @@ function checkbox(className, opts) {
 		disabled: false,
 		onChange: null
 	})
-	var $input = $(input(tags.classNames('tags-forms-checkbox', className), { type:'checkbox', id:opts.id }, function() {
+	var $input = $(input(tags.classNames('tags-forms-checkbox', className), { type:'checkbox', id:opts.id, disabled:opts.disabled }, function() {
 		this.checked = opts.value
 	}))
 	if (opts.onChange) {
