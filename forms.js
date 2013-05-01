@@ -10,6 +10,10 @@ module.exports = {
 	submission:submission
 }
 
+function escapeHtml(str) {
+	return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
 function field(id, labelText, opts) {
 	var fieldOpts = options(opts, { input:input })
 	if (!opts) { opts = {} }
@@ -64,8 +68,8 @@ function select(className, opts) {// name, selectOptions, opts) {
 	var attrsHtml = (opts.id ? ' id="'+opts.id+'" name="'+opts.id+'"' : '')
 	var $select = $('<select class="'+tags.classNames('tags-forms-select', className)+'" '+attrsHtml+'>'+$.map(selectOptions, function(option) {
 		var selected = (opts.value && opts.value == (option.value ? option.value : option))
-		var value = option.value ? option.value : option
-		var label = option.label ? option.label : option
+		var value = option.value ? option.value : '(none)'
+		var label = option.label ? option.label : '(none)'
 		return select.optionHtml(value, label, selected)
 	}).join('')+'</select>')
 	if (opts.onChange) {
@@ -77,7 +81,7 @@ function select(className, opts) {// name, selectOptions, opts) {
 }
 
 select.optionHtml = function(value, label, selected) {
-	return '<option value="'+value+'" '+(selected ? 'selected=true' : '')+'>'+label+'</option>'
+	return '<option value="'+value+'" '+(selected ? 'selected=true' : '')+'>'+escapeHtml(label)+'</option>'
 }
 
 function submission(text, submittingText, opts, onsubmit) {
