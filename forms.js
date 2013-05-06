@@ -68,8 +68,8 @@ function select(className, opts) {// name, selectOptions, opts) {
 	var attrsHtml = (opts.id ? ' id="'+opts.id+'" name="'+opts.id+'"' : '')
 	var $select = $('<select class="'+tags.classNames('tags-forms-select', className)+'" '+attrsHtml+'>'+$.map(selectOptions, function(option) {
 		var selected = (opts.value && opts.value == (option.value ? option.value : option))
-		var value = option.value ? option.value : '(none)'
-		var label = option.label ? option.label : '(none)'
+		var value = option.value ? option.value : (typeof(option)=='string' ? option: '(none)')
+		var label = option.label ? option.label : (typeof(option)=='string' ? option: '(none)')
 		return select.optionHtml(value, label, selected)
 	}).join('')+'</select>')
 	if (opts.onChange) {
