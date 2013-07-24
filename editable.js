@@ -32,7 +32,8 @@ editable.show = function($el, opts) {
 	opts = tags.options(opts, {
 		onSave:null,
 		value:null,
-		maxWidth:null
+		maxWidth:null,
+		maxLength:null
 	})
 
 	var value = (opts.value == null ? $el.text() : opts.value)
@@ -41,6 +42,10 @@ editable.show = function($el, opts) {
 		.css(getLayout())
 		.on('keydown', onKeyDown).on('keypress', onKeyPress).on('blur', finish)
 		.appendTo('body')
+
+	if (opts.maxLength!=null) {
+		$input.attr('maxlength',opts.maxLength)
+	}
 
 	setTimeout(function() { $input.focus().select() })
 
