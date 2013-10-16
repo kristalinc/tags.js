@@ -33,11 +33,13 @@ editable.show = function($el, opts) {
 		onSave:null,
 		value:null,
 		maxWidth:null,
-		maxLength:null
+		maxLength:null,
+		type:null
 	})
 
 	var value = (opts.value == null ? $el.text() : opts.value)
-	var $input = $(input('tags-editable')).val(value)
+	var type = (opts.type == null ? "text" : opts.type)
+	var $input = $(input('tags-editable', {type: type} )).val(value)
 		.css({ position:'absolute', paddingLeft:paddingLeft, fontFamily:$el.css('fontFamily'), fontSize:$el.css('fontSize') })
 		.css(getLayout())
 		.on('keydown', onKeyDown).on('keypress', onKeyPress).on('blur', finish)
@@ -77,6 +79,7 @@ editable.show = function($el, opts) {
 			}
 			value = newVal
 		}
+		onChange(); // update text one last time.
 		$input.off('keydown').off('keypress').off('blur').blur().remove()
 	}
 	function onChange() {
